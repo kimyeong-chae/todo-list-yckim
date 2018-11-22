@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form'
 import TodoItemList from './components/TodoItemList'
+import Palette from './components/Palette'
+
 class App extends Component {
 
     id = 0;
-
     state = {
         input: '',
-        todos: []
+        currentColor: '',
+        todos: [],
+        colors: ['#343a40', '#f03e3e', '#12b886', '#228ae6']
     }
 
     handleChange = (e) => {
@@ -21,10 +24,12 @@ class App extends Component {
         const {input, todos} = this.state;
         this.setState({
            input: '',
+           currentColor: '',
            todos: todos.concat({
                id: this.id++,
                text: input,
-               checked: false
+               checked: false,
+               color: ''
            })
         });
     }
@@ -73,6 +78,7 @@ class App extends Component {
 
         return (
             <div className="App">
+                <Palette colors={this.state.colors} />
                 <TodoListTemplate form={(
                     <Form
                         value={input}
