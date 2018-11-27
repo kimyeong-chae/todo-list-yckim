@@ -9,7 +9,7 @@ class Color extends Component {
         }
 
         return (
-            <div className="color" style={style} onClick={() => this.props.onColorClick(this.props.color)} >
+            <div className={`color ${this.props.currentColor === this.props.color ? 'active' : ''}`} style={style} onClick={() => this.props.onColorClick(this.props.color)} >
 
             </div>
         );
@@ -20,10 +20,10 @@ export default class Palette extends Component {
 
     render() {
 
-        const {colors, onColorClick} = this.props;
+        const {colors, onColorClick, currentColor} = this.props;
 
         const colorList = colors.map(
-            (color => (<Color color={color} onColorClick={onColorClick}/>))
+            (color => (<Color color={color} onColorClick={onColorClick} currentColor={currentColor}/>))
         );
 
         return (

@@ -99,6 +99,7 @@ class App extends Component {
                 )} palette={
                     <Palette
                         colors={colors}
+                        currentColor={currentColor}
                         onColorClick={handleColorClick}
                     />
                 }>

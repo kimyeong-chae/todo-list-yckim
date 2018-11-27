@@ -1,6 +1,5 @@
 import React , {Component }from 'react';
 import './TodoListTemplate.css';
-import Palette from './Palette';
 
 class TodoListTemplate extends Component {
 
