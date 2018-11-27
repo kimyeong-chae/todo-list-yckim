@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import TodoItem from './TodoItem'
 
-
 export default class TodoItemList extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -12,7 +11,7 @@ export default class TodoItemList extends Component {
         const {todos, onToggle, onRemove} = this.props;
 
         const todoList = todos.map(
-            ({id, text, checked}) => (
+            ({id, text, checked, color}) => (
                 <TodoItem
                     id={id}
                     text={text}
@@ -20,6 +19,7 @@ export default class TodoItemList extends Component {
                     onToggle={onToggle}
                     onRemove={onRemove}
                     key={id}
+                    color={color}
                 />
             )
         );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form'
 import TodoItemList from './components/TodoItemList'
-import Palette from './components/Palette'
+import Palette from "./components/Palette";
 
 class App extends Component {
 
@@ -24,12 +24,12 @@ class App extends Component {
         const {input, todos} = this.state;
         this.setState({
            input: '',
-           currentColor: '',
+           currentColor: '#000000',
            todos: todos.concat({
                id: this.id++,
                text: input,
                checked: false,
-               color: ''
+               color: this.state.currentColor === '' ? '#000000' : this.state.currentColor
            })
         });
     }
@@ -65,30 +65,45 @@ class App extends Component {
         });
     }
 
+    handleColorClick = (color) => {
+        this.setState({
+            currentColor: color
+        })
+    }
+
     render() {
 
-        const {input} = this.state;
+        const {input, colors, currentColor} = this.state;
         const {
             handleChange,
             handleCreate,
             handleKeyPress,
             handleToggle,
-            handleRemove
+            handleRemove,
+            handleColorClick
+
         } = this;
 
         return (
             <div className="App">
-                <Palette colors={this.state.colors} />
+
                 <TodoListTemplate form={(
+
                     <Form
                         value={input}
                         onKeyPress={handleKeyPress}
                         onChange={handleChange}
                         onCreate={handleCreate}
+                        color={currentColor}
                     />
-                )}>
+                )} palette={
+                    <Palette
+                        colors={colors}
+                        onColorClick={handleColorClick}
+                    />
+                }>
                     <TodoItemList todos={this.state.todos} onToggle={handleToggle} onRemove={handleRemove}/>
-                </TodoListTemplate>
+                </TodoListTemplate>)
             </div>
         );
     }
