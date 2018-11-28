@@ -19,10 +19,9 @@ export default class TodoItem extends Component {
                     onRemove(id)
                 }}>&times;</div>
 
-                <div className={`todo-text ${checked && 'checked'}`}>
-                    <div style={style}>{text}</div>
+                <div className={`todo-text ${checked && 'checked'}`} style={style}>
+                    <div >{text}</div>
                 </div>
-
                 {
                     checked && (<div className="check-mark">✓</div>)
                 }
